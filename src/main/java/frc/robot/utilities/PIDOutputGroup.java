@@ -5,9 +5,9 @@ public class PIDOutputGroup implements PIDOutput
 {
     private ArrayList<PIDOutput> m_outputs;
 
-    public PIDOutputGroup(ArrayList<PIDOutput> outputs)
+    public PIDOutputGroup(ArrayList<VictorPIDOutput> leftMotorsList)
     {
-        m_outputs = outputs;
+        m_outputs = leftMotorsList;
     }
 
 	@Override

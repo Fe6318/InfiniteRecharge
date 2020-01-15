@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import java.util.ArrayList;
+
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Victor;
@@ -32,6 +34,9 @@ public class DriveTrain extends SubsystemBase {
   public static PIDOutputGroup leftMotors;
   public static PIDOutputGroup rightMotors;
 
+  private static ArrayList<VictorPIDOutput> leftMotorsList;
+  private static ArrayList<VictorPIDOutput> rightMotorsList;
+
   
   public DriveTrain() {
     frontLeftMotor = new VictorSPX(Constants.FRONT_LEFT_MOTOR);
@@ -44,8 +49,17 @@ public class DriveTrain extends SubsystemBase {
     backRightPIDOutput = new VictorPIDOutput(backRightMotor);
     backLeftPIDOutput = new VictorPIDOutput(backLeftMotor);
 
-    //leftMotors = new PIDOutputGroup();
-    //rightMotors = new PIDOutputGroup();
+    leftMotorsList = new ArrayList<VictorPIDOutput>();
+    rightMotorsList = new ArrayList<VictorPIDOutput>();
+
+    leftMotorsList.add(frontLeftPIDOutput);
+    leftMotorsList.add(backLeftPIDOutput);
+
+    rightMotorsList.add(frontRightPIDOutput);
+    rightMotorsList.add(backRightPIDOutput);
+    
+    leftMotors = new PIDOutputGroup(leftMotorsList);
+    rightMotors = new PIDOutputGroup(rightMotorsList);
   }
 
   @Override
