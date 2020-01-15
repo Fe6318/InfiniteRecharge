@@ -3,11 +3,11 @@ import java.util.ArrayList;
 
 public class PIDOutputGroup implements PIDOutput
 {
-    private ArrayList<PIDOutput> m_outputs;
+    private ArrayList<VictorPIDOutput> m_outputs;
 
-    public PIDOutputGroup(ArrayList<VictorPIDOutput> leftMotorsList)
+    public PIDOutputGroup(ArrayList<VictorPIDOutput> outputs)
     {
-        m_outputs = leftMotorsList;
+        m_outputs = outputs;
     }
 
 	@Override
