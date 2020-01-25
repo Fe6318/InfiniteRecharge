@@ -20,4 +20,16 @@ public final class Constants {
     public static final int FRONT_RIGHT_MOTOR = 1;
     public static final int BACK_LEFT_MOTOR = 2;
     public static final int BACK_RIGHT_MOTOR = 3;
+
+    public static final int RIGHT_ENCODER_1 = 1;
+    public static final int RIGHT_ENCODER_2 = 2;
+    public static final int LEFT_ENCODER_1 = 3; 
+    public static final int LEFT_ENCODER_2 = 4;
+
+    //FOOKIN TOON THIS
+    public static final double DRIVE_TRAIN_TICKS_PER_FOOT = 1000;
+    //ALSO FOOKIN TOON THIS
+    public static final double DRIVE_PID_TOLERANCE = 4;
+    //ALSO ALSO FOOKIN TOON DIS
+    public static final double MIN_FORWARD_DERIVATIVE = 4;
 }

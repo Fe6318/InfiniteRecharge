@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
@@ -28,6 +29,17 @@ public class DriveContinous extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double speedX = RobotContainer.deadZone(RobotContainer.driver.getRawAxis(0));
+
+    if(speedX < 0)
+    {
+      speedX = -1 * Math.pow(2, speedX);
+    }
+    else{
+      speedX = Math.pow(2, speedX);
+    }   
+
+
     
   }
 

@@ -11,9 +11,14 @@ import java.util.ArrayList;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
+import frc.robot.utilities.EncoderPIDSource;
+import frc.robot.utilities.PIDController;
+import frc.robot.utilities.PIDOutput;
 import frc.robot.utilities.PIDOutputGroup;
 import frc.robot.utilities.VictorPIDOutput;
 
@@ -26,6 +31,12 @@ public class DriveTrain extends SubsystemBase {
   public static VictorSPX backRightMotor;
   public static VictorSPX backLeftMotor;
 
+  private static ArrayList<PIDOutput> leftMotorsList;
+  private static ArrayList<PIDOutput> rightMotorsList;
+
+  private static Encoder leftEncoder;
+  private static Encoder rightEncoder;
+
   public static VictorPIDOutput frontLeftPIDOutput;
   public static VictorPIDOutput frontRightPIDOutput;
   public static VictorPIDOutput backRightPIDOutput;
@@ -34,10 +45,12 @@ public class DriveTrain extends SubsystemBase {
   public static PIDOutputGroup leftMotors;
   public static PIDOutputGroup rightMotors;
 
-  private static ArrayList<VictorPIDOutput> leftMotorsList;
-  private static ArrayList<VictorPIDOutput> rightMotorsList;
-
+  public static EncoderPIDSource leftEncoderPIDSource;
+  public static EncoderPIDSource rightEncoderPIDSource;
   
+  public static PIDController rightPID;
+  public static PIDController leftPID;
+
   public DriveTrain() {
     frontLeftMotor = new VictorSPX(Constants.FRONT_LEFT_MOTOR);
     frontRightMotor = new VictorSPX(Constants.FRONT_RIGHT_MOTOR);
@@ -49,8 +62,8 @@ public class DriveTrain extends SubsystemBase {
     backRightPIDOutput = new VictorPIDOutput(backRightMotor);
     backLeftPIDOutput = new VictorPIDOutput(backLeftMotor);
 
-    leftMotorsList = new ArrayList<VictorPIDOutput>();
-    rightMotorsList = new ArrayList<VictorPIDOutput>();
+    leftMotorsList = new ArrayList<PIDOutput>();
+    rightMotorsList = new ArrayList<PIDOutput>();
 
     leftMotorsList.add(frontLeftPIDOutput);
     leftMotorsList.add(backLeftPIDOutput);
@@ -60,6 +73,20 @@ public class DriveTrain extends SubsystemBase {
     
     leftMotors = new PIDOutputGroup(leftMotorsList);
     rightMotors = new PIDOutputGroup(rightMotorsList);
+
+    leftEncoder = new Encoder(Constants.LEFT_ENCODER_1, Constants.LEFT_ENCODER_2);
+    rightEncoder = new Encoder(Constants.RIGHT_ENCODER_1, Constants.RIGHT_ENCODER_2);
+
+    leftEncoderPIDSource = new EncoderPIDSource(leftEncoder);
+    rightEncoderPIDSource = new EncoderPIDSource(rightEncoder);
+
+    rightPID = new PIDController(1, 1, 1, rightEncoderPIDSource, rightMotors);
+    leftPID = new PIDController(1, 1, 1, leftEncoderPIDSource, leftMotors);
+  }
+
+  public static DriveTrain getTrain()
+  {
+    return Robot.driveTrain;
   }
 
   @Override

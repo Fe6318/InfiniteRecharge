@@ -1,6 +1,6 @@
 package frc.robot.utilities;
 
-interface PIDSource
+public interface PIDSource
 {
     double PIDGet();
 }

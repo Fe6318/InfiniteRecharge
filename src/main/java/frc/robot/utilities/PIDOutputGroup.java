@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class PIDOutputGroup implements PIDOutput
 {
-    private ArrayList<VictorPIDOutput> m_outputs;
+    private ArrayList<PIDOutput> m_outputs;
 
-    public PIDOutputGroup(ArrayList<VictorPIDOutput> outputs)
+    public PIDOutputGroup(ArrayList<PIDOutput> outputs)
     {
         m_outputs = outputs;
     }

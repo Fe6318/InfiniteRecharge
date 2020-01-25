@@ -1,6 +1,6 @@
 package frc.robot.utilities;
 
-interface PIDOutput
+public interface PIDOutput
 {
     void PIDWrite(double output);
 }

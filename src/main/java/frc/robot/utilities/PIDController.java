@@ -62,6 +62,7 @@ public class PIDController
         if(m_isEnabled)
         {
             PIDControlLoop.activePIDList.remove(this);
+            m_pidOutput.PIDWrite(0);
         }
     }
     public void update()
