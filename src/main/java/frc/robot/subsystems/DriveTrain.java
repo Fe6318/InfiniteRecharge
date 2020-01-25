@@ -9,10 +9,14 @@ package frc.robot.subsystems;
 
 import java.util.ArrayList;
 
+import com.ctre.phoenix.motorcontrol.GroupMotorControllers;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -26,10 +30,10 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
-  public static VictorSPX frontRightMotor;
-  public static VictorSPX frontLeftMotor;
-  public static VictorSPX backRightMotor;
-  public static VictorSPX backLeftMotor;
+  public static WPI_VictorSPX frontRightMotor;
+  public static WPI_VictorSPX frontLeftMotor;
+  public static WPI_VictorSPX backRightMotor;
+  public static WPI_VictorSPX backLeftMotor;
 
   private static ArrayList<PIDOutput> leftMotorsList;
   private static ArrayList<PIDOutput> rightMotorsList;
@@ -45,17 +49,22 @@ public class DriveTrain extends SubsystemBase {
   public static PIDOutputGroup leftMotors;
   public static PIDOutputGroup rightMotors;
 
+  public static SpeedControllerGroup leftMotorGroup;
+  public static SpeedControllerGroup rightMotorGroup;
+
   public static EncoderPIDSource leftEncoderPIDSource;
   public static EncoderPIDSource rightEncoderPIDSource;
   
   public static PIDController rightPID;
   public static PIDController leftPID;
 
+  public static DifferentialDrive driveTrain;
+
   public DriveTrain() {
-    frontLeftMotor = new VictorSPX(Constants.FRONT_LEFT_MOTOR);
-    frontRightMotor = new VictorSPX(Constants.FRONT_RIGHT_MOTOR);
-    backRightMotor = new VictorSPX(Constants.BACK_RIGHT_MOTOR);
-    backLeftMotor = new VictorSPX(Constants.BACK_LEFT_MOTOR);
+    frontLeftMotor = new WPI_VictorSPX(Constants.FRONT_LEFT_MOTOR);
+    frontRightMotor = new WPI_VictorSPX(Constants.FRONT_RIGHT_MOTOR);
+    backRightMotor = new WPI_VictorSPX(Constants.BACK_RIGHT_MOTOR);
+    backLeftMotor = new WPI_VictorSPX(Constants.BACK_LEFT_MOTOR);
 
     frontLeftPIDOutput = new VictorPIDOutput(frontLeftMotor);
     frontRightPIDOutput = new VictorPIDOutput(frontRightMotor);
@@ -80,8 +89,15 @@ public class DriveTrain extends SubsystemBase {
     leftEncoderPIDSource = new EncoderPIDSource(leftEncoder);
     rightEncoderPIDSource = new EncoderPIDSource(rightEncoder);
 
+    rightMotorGroup = new SpeedControllerGroup(frontRightMotor, backRightMotor);
+    leftMotorGroup = new SpeedControllerGroup(frontLeftMotor, backLeftMotor);
+
+    driveTrain = new DifferentialDrive(rightMotorGroup, leftMotorGroup);
+
     rightPID = new PIDController(1, 1, 1, rightEncoderPIDSource, rightMotors);
     leftPID = new PIDController(1, 1, 1, leftEncoderPIDSource, leftMotors);
+
+    
   }
 
   public static DriveTrain getTrain()
