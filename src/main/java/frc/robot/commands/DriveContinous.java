@@ -42,9 +42,9 @@ public class DriveContinous extends CommandBase {
       speedX = Math.pow(2, speedX);
     }   
     */
-    DriveTrain.driveTrain.arcadeDrive(
+    Robot.driveTrain.dDrive.arcadeDrive(
       squareJoystick(RobotContainer.driver.getRawAxis(1)), 
-      squareJoystick(RobotContainer.driver.getRawAxis(2)) + squareJoystick(RobotContainer.driver.getRawAxis(0)));
+     -RobotContainer.driver.getRawAxis(2) + -RobotContainer.driver.getRawAxis(0));
     
 
   }

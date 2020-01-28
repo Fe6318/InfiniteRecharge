@@ -58,7 +58,7 @@ public class DriveTrain extends SubsystemBase {
   public static PIDController rightPID;
   public static PIDController leftPID;
 
-  public static DifferentialDrive driveTrain;
+  public static DifferentialDrive dDrive;
 
   public DriveTrain() {
     frontLeftMotor = new WPI_VictorSPX(Constants.FRONT_LEFT_MOTOR);
@@ -92,7 +92,7 @@ public class DriveTrain extends SubsystemBase {
     rightMotorGroup = new SpeedControllerGroup(frontRightMotor, backRightMotor);
     leftMotorGroup = new SpeedControllerGroup(frontLeftMotor, backLeftMotor);
 
-    driveTrain = new DifferentialDrive(rightMotorGroup, leftMotorGroup);
+    dDrive = new DifferentialDrive(rightMotorGroup, leftMotorGroup);
 
     rightPID = new PIDController(1, 1, 1, rightEncoderPIDSource, rightMotors);
     leftPID = new PIDController(1, 1, 1, leftEncoderPIDSource, leftMotors);
