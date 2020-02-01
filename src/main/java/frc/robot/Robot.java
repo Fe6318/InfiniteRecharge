@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.*;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveContinous;
 import frc.robot.commands.DriveForwards;
@@ -32,6 +35,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public static DriveTrain driveTrain;
   public static AHRS ahrs;
+  public static UsbCamera camera1;
   
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -45,6 +49,11 @@ public class Robot extends TimedRobot {
     driveTrain = new DriveTrain();
     PIDControlLoop p = new PIDControlLoop();
     ahrs = new AHRS(SPI.Port.kMXP);
+    ahrs.enableLogging(true);
+    CameraServer.getInstance().startAutomaticCapture(0);
+
+
+    
   }
 
   /**
@@ -62,6 +71,17 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     PIDControlLoop.UpdatePIDControllers();
+
+    SmartDashboard.putNumber("Gyro X: ", ahrs.getRawGyroX());
+    SmartDashboard.putNumber("Gyro Y: ", ahrs.getRawGyroY());
+    SmartDashboard.putNumber("Gyro Z: ", ahrs.getRawGyroZ());
+    SmartDashboard.putNumber("Update Count: ", ahrs.getUpdateCount());
+    SmartDashboard.putNumber("Y Velocity: ", ahrs.getVelocityY());
+    SmartDashboard.putNumber("Y Displacement: ", ahrs.getDisplacementY());
+    SmartDashboard.putNumber("Angle", ahrs.getAngle());
+    SmartDashboard.putNumber("Update Rate: ", ahrs.getActualUpdateRate());
+    SmartDashboard.putNumber("Y Displacement: ", ahrs.getDisplacementY());
+
   }
 
   /**
@@ -81,7 +101,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    CommandScheduler.getInstance().schedule(new DriveForwards(10000));
+    CommandScheduler.getInstance().schedule(new DriveForwards());
     CommandScheduler.getInstance().run();
     
     // schedule the autonomous command (example)
@@ -116,9 +136,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    SmartDashboard.putNumber("Gyro X", ahrs.getRawGyroX());
-    SmartDashboard.putNumber("Gyro Y", ahrs.getRawGyroY());
-    SmartDashboard.putNumber("Gyro Z", ahrs.getRawGyroZ());
   }
 
   @Override

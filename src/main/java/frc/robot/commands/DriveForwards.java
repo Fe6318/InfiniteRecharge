@@ -7,20 +7,22 @@
 
 package frc.robot.commands;
 
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveForwards extends CommandBase {
   public double ticksForward;
+  public Timer timer;
   /**
    * Creates a new DriveForwards.
    */
-  public DriveForwards(double ticksForward) {
+  public DriveForwards() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(DriveTrain.getTrain());
-    this.ticksForward = ticksForward;
+   // this.ticksForward = ticksForward;
   }
 
   // Called when the command is initially scheduled.
@@ -37,26 +39,38 @@ public class DriveForwards extends CommandBase {
 
     DriveTrain.rightPID.enable();
     DriveTrain.leftPID.enable();
+
+    Robot.ahrs.calibrate();
+
+    timer = new Timer();
+    timer.start();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
+
+    
+    Robot.driveTrain.dDrive.arcadeDrive(-.3, -(Robot.ahrs.getAngle() / 360), false);
+    
+
+
   }
 
-  // Called once the command ends or is interrupted.
+  // Called once the command ends or is interrupted.e
   @Override
   public void end(boolean interrupted) {
     DriveTrain.leftPID.disable();
     DriveTrain.rightPID.disable();
+    timer.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return DriveTrain.rightPID.isOnTarget() 
-    && DriveTrain.leftPID.isOnTarget() 
-    && DriveTrain.leftPID.getDerivative() < Constants.MIN_FORWARD_DERIVATIVE 
-    && DriveTrain.rightPID.getDerivative() < Constants.MIN_FORWARD_DERIVATIVE;
+    return timer.get() > 4;
+  
   }
 }
