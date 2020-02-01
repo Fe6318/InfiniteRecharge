@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveContinous;
+import frc.robot.commands.DriveForwards;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.utilities.PIDControlLoop;
 
@@ -80,7 +81,9 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    CommandScheduler.getInstance().schedule(new DriveForwards(10000));
+    CommandScheduler.getInstance().run();
+    
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();

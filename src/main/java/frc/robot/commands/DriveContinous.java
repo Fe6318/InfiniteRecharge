@@ -42,31 +42,14 @@ public class DriveContinous extends CommandBase {
       speedX = Math.pow(2, speedX);
     }   
     */
+
+    //(double xSpeed, double zRotation, boolean squareInputs)
     Robot.driveTrain.dDrive.arcadeDrive(
     RobotContainer.driver.getRawAxis(1), 
-     RobotContainer.driver.getRawAxis(2) + RobotContainer.driver.getRawAxis(0));
+    RobotContainer.driver.getRawAxis(2) + RobotContainer.driver.getRawAxis(0), true);
     
     
 
-  }
-
-  private double squareJoystick(double input)
-  {
-    double output = input;
-    
-    if(Math.abs(output) < 0.05)
-    {
-      output = 0;
-    }
-
-    if(output > 0)
-    {
-      return Math.pow(output, 2.0);
-
-    }
-    else{
-      return -Math.pow(output, 2.0);
-    }
   }
 
   // Called once the command ends or is interrupted.
