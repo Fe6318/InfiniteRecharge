@@ -43,8 +43,8 @@ public class DriveContinous extends CommandBase {
     }   
     */
     Robot.driveTrain.dDrive.arcadeDrive(
-      squareJoystick(RobotContainer.driver.getRawAxis(1)), 
-     -RobotContainer.driver.getRawAxis(2) + -RobotContainer.driver.getRawAxis(0));
+    RobotContainer.driver.getRawAxis(1), 
+     RobotContainer.driver.getRawAxis(2) + RobotContainer.driver.getRawAxis(0));
     
 
   }
