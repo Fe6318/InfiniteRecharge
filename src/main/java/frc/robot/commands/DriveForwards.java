@@ -51,9 +51,9 @@ public class DriveForwards extends CommandBase {
   @Override
   public void execute() {
     
-
+    double correction = -Robot.ahrs.getAngle() * Constants.kP;
     
-    Robot.driveTrain.dDrive.arcadeDrive(-.3, -(Robot.ahrs.getAngle() / 360), false);
+    Robot.driveTrain.dDrive.arcadeDrive(-.3, correction, false);
     
 
 

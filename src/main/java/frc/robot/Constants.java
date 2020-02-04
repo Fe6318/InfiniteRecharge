@@ -22,7 +22,7 @@ public final class Constants {
     public static final int BACK_RIGHT_MOTOR = 3;
 
     //Not in use everything below
-    static final double kP = .6;
+    public static final double kP = .0025;
     public static final int RIGHT_ENCODER_1 = 1;
     public static final int RIGHT_ENCODER_2 = 2;
     public static final int LEFT_ENCODER_1 = 3; 
