@@ -21,6 +21,9 @@ public final class Constants {
     public static final int FRONT_RIGHT_MOTOR = 2;
     public static final int BACK_RIGHT_MOTOR = 3;
 
+    public static final int LIFT_RIGHT_MOTOR = 4;
+    public static final int LIFT_LEFT_MOTOR = 5;
+    
     //Not in use everything below
     public static final double kP = .0025;
     public static final int RIGHT_ENCODER_1 = 1;

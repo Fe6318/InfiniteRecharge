@@ -21,7 +21,7 @@ public class DriveForwards extends CommandBase {
    */
   public DriveForwards() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(DriveTrain.getTrain());
+    addRequirements(Robot.driveTrain);
    // this.ticksForward = ticksForward;
   }
 
@@ -53,7 +53,7 @@ public class DriveForwards extends CommandBase {
     
     double correction = -Robot.ahrs.getAngle() * Constants.kP;
     
-    Robot.driveTrain.dDrive.arcadeDrive(-.3, correction, false);
+    Robot.driveTrain.dDrive.arcadeDrive(-.1, correction, false);
     
 
 

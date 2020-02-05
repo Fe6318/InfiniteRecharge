@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveContinous;
 import frc.robot.commands.DriveForwards;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Lift;
 import frc.robot.utilities.PIDControlLoop;
 
 
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static AHRS ahrs;
   public static UsbCamera camera1;
+  public static Lift lift;
   
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -51,7 +53,7 @@ public class Robot extends TimedRobot {
     ahrs = new AHRS(SPI.Port.kMXP);
     ahrs.enableLogging(true);
     CameraServer.getInstance().startAutomaticCapture(0);
-
+    lift = new Lift();
 
     
   }

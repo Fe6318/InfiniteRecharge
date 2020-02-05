@@ -100,10 +100,6 @@ public class DriveTrain extends SubsystemBase {
     
   }
 
-  public static DriveTrain getTrain()
-  {
-    return Robot.driveTrain;
-  }
 
   @Override
   public void periodic() {
