@@ -23,6 +23,8 @@ public final class Constants {
 
     public static final int LIFT_RIGHT_MOTOR = 4;
     public static final int LIFT_LEFT_MOTOR = 5;
+
+    public static final int SPINNER_MOTOR = 6;
     
     //Not in use everything below
     public static final double kP = .0025;

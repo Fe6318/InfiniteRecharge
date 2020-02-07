@@ -22,6 +22,7 @@ import frc.robot.commands.DriveContinous;
 import frc.robot.commands.DriveForwards;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.Spinner;
 import frc.robot.utilities.PIDControlLoop;
 
 
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
   public static AHRS ahrs;
   public static UsbCamera camera1;
   public static Lift lift;
+  public static Spinner spinner;
   
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -54,7 +56,7 @@ public class Robot extends TimedRobot {
     ahrs.enableLogging(true);
     CameraServer.getInstance().startAutomaticCapture(0);
     lift = new Lift();
-
+    spinner = new Spinner();
     
   }
 
