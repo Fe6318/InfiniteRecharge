@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -17,8 +18,12 @@ public class Spinner extends SubsystemBase {
    * Creates a new Spinner.
    */
   public static WPI_VictorSPX spinnerMotor;
-  public Spinner() {
+  public static ColorSensorV3 colorSensor;
+  
+  public Spinner() 
+  {
     spinnerMotor = new WPI_VictorSPX(Constants.SPINNER_MOTOR);
+    colorSensor = new ColorSensorV3(Constants.i2cPort);
   }
 
   @Override

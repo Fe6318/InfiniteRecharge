@@ -7,6 +7,8 @@
 
 package frc.robot.commands;
 
+import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
@@ -15,15 +17,25 @@ public class SpinWheel extends CommandBase {
   /**
    * Creates a new SpinWheel.
    */
+  private static ColorSensorV3 m_colorSensor;
+
+
   public SpinWheel() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.spinner);
+    m_colorSensor = Robot.spinner.colorSensor;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     Robot.spinner.spinnerMotor.set(RobotContainer.operator.getRawAxis(2));
+
+    if(m_colorSensor.getProximity() == 2047)
+    {
+      
+    }
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
