@@ -30,12 +30,15 @@ public class SpinWheel extends CommandBase {
   @Override
   public void initialize() {
     Robot.spinner.spinnerMotor.set(RobotContainer.operator.getRawAxis(2));
-
-    if(m_colorSensor.getProximity() == 2047)
-    {
-      
-    }
     
+    if(m_colorSensor.getProximity() > 2042)
+    {
+      while(m_colorSensor.getProximity() > 2042)
+      {
+        
+      }
+    }
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
