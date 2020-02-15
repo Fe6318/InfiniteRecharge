@@ -20,6 +20,8 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveContinous;
 import frc.robot.commands.DriveForwards;
+import frc.robot.commands.SpinWheel;
+import frc.robot.commands.SpinnerManual;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.Spinner;
@@ -50,14 +52,30 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    // Subsystems
+    lift = new Lift();
+
     driveTrain = new DriveTrain();
-    PIDControlLoop p = new PIDControlLoop();
+    driveTrain.setDefaultCommand(new DriveContinous());
+
+    spinner = new Spinner();
+    spinner.setDefaultCommand(new SpinnerManual());
+
+    // Buttons
+    RobotContainer.redButton.whenPressed(new SpinWheel(Constants.RED), true);
+    RobotContainer.blueButton.whenPressed(new SpinWheel(Constants.BLUE), true);
+    RobotContainer.greenButton.whenPressed(new SpinWheel(Constants.GREEN), true);
+    RobotContainer.yellowButton.whenPressed(new SpinWheel(Constants.YELLOW), true);
+
+    // Camera stuff
+    
     ahrs = new AHRS(SPI.Port.kMXP);
     ahrs.enableLogging(true);
     CameraServer.getInstance().startAutomaticCapture(0);
-    lift = new Lift();
-    spinner = new Spinner();
     
+    //Ignore Below
+    PIDControlLoop p = new PIDControlLoop();
   }
 
   /**
@@ -85,7 +103,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Angle", ahrs.getAngle());
     SmartDashboard.putNumber("Update Rate: ", ahrs.getActualUpdateRate());
     SmartDashboard.putNumber("Y Displacement: ", ahrs.getDisplacementY());
-
+    SmartDashboard.putNumber("Red: ", spinner.colorSensor.getRed());
+    SmartDashboard.putNumber("Blue: ", spinner.colorSensor.getBlue());
+    SmartDashboard.putNumber("Green: ", spinner.colorSensor.getGreen());
   }
 
   /**
@@ -127,7 +147,6 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    CommandScheduler.getInstance().schedule(new DriveContinous());
     CommandScheduler.getInstance().run();
 
     if (m_autonomousCommand != null) {

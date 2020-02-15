@@ -13,6 +13,7 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.SpinnerManual;
 
 public class Spinner extends SubsystemBase {
   /**

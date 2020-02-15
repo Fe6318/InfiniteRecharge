@@ -42,10 +42,10 @@ public final class Constants {
     public static final Color YELLOW = new Color(255, 255, 0);
 
     //Color button ints
-    public static final int RED_BUTTON = 0;
-    public static final int BLUE_BUTTON = 1;
-    public static final int GREEN_BUTTON = 2;
-    public static final int YELLOW_BUTTON = 3;
+    public static final int RED_BUTTON = 2;
+    public static final int BLUE_BUTTON = 3;
+    public static final int GREEN_BUTTON = 1;
+    public static final int YELLOW_BUTTON = 4;
 
 
     public static final I2C.Port i2cPort = I2C.Port.kOnboard;

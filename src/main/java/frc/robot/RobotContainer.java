@@ -31,10 +31,10 @@ public class RobotContainer {
   public static Joystick driver;
   public static Joystick operator;
   
-  private JoystickButton redButton;
-  private JoystickButton blueButton;
-  private JoystickButton yellowButton;
-  private JoystickButton greenButton;
+  public static JoystickButton redButton;
+  public static JoystickButton blueButton;
+  public static JoystickButton yellowButton;
+  public static JoystickButton greenButton;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -46,11 +46,6 @@ public class RobotContainer {
     blueButton = new JoystickButton(operator, Constants.BLUE_BUTTON);
     greenButton = new JoystickButton(operator, Constants.GREEN_BUTTON);
     yellowButton = new JoystickButton(operator, Constants.YELLOW_BUTTON);
-
-    redButton.whenPressed(new SpinWheel(Constants.RED), true);
-    blueButton.whenPressed(new SpinWheel(Constants.BLUE), true);
-    greenButton.whenPressed(new SpinWheel(Constants.GREEN), true);
-    yellowButton.whenPressed(new SpinWheel(Constants.YELLOW), true);
   }
 
  

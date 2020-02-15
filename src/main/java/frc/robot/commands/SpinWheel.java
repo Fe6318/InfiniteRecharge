@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class SpinWheel extends CommandBase {
   /**
@@ -41,7 +42,8 @@ public class SpinWheel extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Robot.spinner.colorSensor.getColor().equals(colorInput))
+    if(Robot.spinner.colorSensor.getColor().equals(colorInput) ||
+     (RobotContainer.operator.getRawAxis(3) + RobotContainer.operator.getRawAxis(2)) > 0.1)
     {
       return true;
     }
