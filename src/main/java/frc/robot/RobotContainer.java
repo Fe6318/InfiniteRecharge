@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.SpinWheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -29,6 +31,10 @@ public class RobotContainer {
   public static Joystick driver;
   public static Joystick operator;
   
+  private JoystickButton redButton;
+  private JoystickButton blueButton;
+  private JoystickButton yellowButton;
+  private JoystickButton greenButton;
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -36,8 +42,15 @@ public class RobotContainer {
     driver = new Joystick(0);
     operator = new Joystick(1);
 
+    redButton = new JoystickButton(operator, Constants.RED_BUTTON);
+    blueButton = new JoystickButton(operator, Constants.BLUE_BUTTON);
+    greenButton = new JoystickButton(operator, Constants.GREEN_BUTTON);
+    yellowButton = new JoystickButton(operator, Constants.YELLOW_BUTTON);
 
-
+    redButton.whenPressed(new SpinWheel(Constants.RED), true);
+    blueButton.whenPressed(new SpinWheel(Constants.BLUE), true);
+    greenButton.whenPressed(new SpinWheel(Constants.GREEN), true);
+    yellowButton.whenPressed(new SpinWheel(Constants.YELLOW), true);
   }
 
  

@@ -53,7 +53,7 @@ public class DriveForwards extends CommandBase {
     
     double correction = -Robot.ahrs.getAngle() * Constants.kP;
     
-    Robot.driveTrain.dDrive.arcadeDrive(-.1, correction, false);
+    Robot.driveTrain.dDrive.arcadeDrive(.1, correction, false);
     
 
 

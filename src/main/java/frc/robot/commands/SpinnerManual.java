@@ -7,44 +7,47 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorSensorV3;
 
-public class SpinWheel extends CommandBase {
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.Robot;
+import frc.robot.RobotContainer;
+
+public class SpinnerManual extends CommandBase {
   /**
    * Creates a new SpinWheel.
    */
-  private Color colorInput;
-  public SpinWheel(Color colorInput) {
+  private static ColorSensorV3 m_colorSensor;
+  
+
+
+  public SpinnerManual() {
+    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.spinner);
-    this.colorInput = colorInput;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_colorSensor = Robot.spinner.colorSensor; 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.spinner.spinnerMotor.set(0.6);
+    Robot.spinner.spinnerMotor.set(RobotContainer.operator.getRawAxis(2));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.spinner.spinnerMotor.set(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Robot.spinner.colorSensor.getColor().equals(colorInput))
-    {
-      return true;
-    }
     return false;
   }
 }

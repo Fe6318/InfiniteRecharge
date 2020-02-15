@@ -7,7 +7,10 @@
 
 package frc.robot;
 
+import com.revrobotics.ColorMatch;
+
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -20,6 +23,7 @@ import edu.wpi.first.wpilibj.I2C;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    // Below are all CAN
     public static final int FRONT_LEFT_MOTOR = 0;
     public static final int BACK_LEFT_MOTOR = 1;
     public static final int FRONT_RIGHT_MOTOR = 2;
@@ -28,9 +32,26 @@ public final class Constants {
     public static final int LIFT_RIGHT_MOTOR = 4;
     public static final int LIFT_LEFT_MOTOR = 5;
 
-    public static final int SPINNER_MOTOR = 6;
-    
+    // Below are PWM
+    public static final int SPINNER_MOTOR = 0;
+
+    // Colors for color sensor comparison on spinner
+    public static final Color RED = new Color(255, 0 ,0);
+    public static final Color GREEN = new Color(0, 255, 0); 
+    public static final Color BLUE = new Color(0, 0, 255);
+    public static final Color YELLOW = new Color(255, 255, 0);
+
+    //Color button ints
+    public static final int RED_BUTTON = 0;
+    public static final int BLUE_BUTTON = 1;
+    public static final int GREEN_BUTTON = 2;
+    public static final int YELLOW_BUTTON = 3;
+
+
     public static final I2C.Port i2cPort = I2C.Port.kOnboard;
+
+
+
     //Not in use everything below
     public static final double kP = .0025;
     public static final int RIGHT_ENCODER_1 = 1;
