@@ -36,16 +36,18 @@ public final class Constants {
     public static final int SPINNER_MOTOR = 0;
 
     // Colors for color sensor comparison on spinner
-    public static final Color RED = new Color(255, 0 ,0);
-    public static final Color GREEN = new Color(0, 255, 0); 
-    public static final Color BLUE = new Color(0, 0, 255);
-    public static final Color YELLOW = new Color(255, 255, 0);
+    public static final Color RED = new Color(1250, 1000, 375);
+    public static final Color GREEN = new Color(450, 1000, 500); 
+    public static final Color BLUE = new Color(600, 2220, 2200);
+    public static final Color YELLOW = new Color(1200, 3300, 600);
 
     //Color button ints
     public static final int RED_BUTTON = 2;
     public static final int BLUE_BUTTON = 3;
     public static final int GREEN_BUTTON = 1;
     public static final int YELLOW_BUTTON = 4;
+
+    public static final int RANGE = 500;
 
 
     public static final I2C.Port i2cPort = I2C.Port.kOnboard;

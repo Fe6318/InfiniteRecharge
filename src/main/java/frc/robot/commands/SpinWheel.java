@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
@@ -39,14 +40,32 @@ public class SpinWheel extends CommandBase {
     Robot.spinner.spinnerMotor.set(0);
   }
 
+  public boolean colorRangeCheck(Color colorIn)
+  {
+   double redIn = colorIn.red;
+   double blueIn = colorIn.blue;
+   double greenIn = colorIn.green;
+
+   double redSense = Robot.spinner.colorSensor.getRed();
+   double blueSense = Robot.spinner.colorSensor.getBlue();
+   double greenSense = Robot.spinner.colorSensor.getGreen();
+
+   if(redSense > redIn - Constants.RANGE && redSense < redIn + Constants.RANGE
+   && blueSense > blueIn - Constants.RANGE && blueSense < blueIn + Constants.RANGE 
+   && greenSense > greenIn - Constants.RANGE  && greenSense < greenIn + Constants.RANGE)
+   {
+    return true;
+   }
+   return false;
+  }
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Robot.spinner.colorSensor.getColor().equals(colorInput) ||
-     (RobotContainer.operator.getRawAxis(3) + RobotContainer.operator.getRawAxis(2)) > 0.1)
+    if((RobotContainer.operator.getRawAxis(3) + RobotContainer.operator.getRawAxis(2)) > 0.1)
     {
       return true;
     }
-    return false;
-  }
+    return(colorRangeCheck(colorInput));
+}
 }
