@@ -36,11 +36,22 @@ public final class Constants {
     public static final int SPINNER_MOTOR = 0;
 
     // Colors for color sensor comparison on spinner
-    public static final Color RED = new Color(1250, 1000, 375);
-    public static final Color GREEN = new Color(450, 1000, 500); 
-    public static final Color BLUE = new Color(600, 2220, 2200);
-    public static final Color YELLOW = new Color(1200, 3300, 600);
+    public static final double RR = 1250;
+    public static final double RG = 1000;
+    public static final double RB = 375;
 
+    public static final double GR = 450;
+    public static final double GG = 1000;
+    public static final double GB = 500;
+
+    public static final double BR = 600;
+    public static final double BG = 2220;
+    public static final double BB = 2220;
+
+    public static final double YR = 1200;
+    public static final double YG = 3300;
+    public static final double YB = 600;
+    
     //Color button ints
     public static final int RED_BUTTON = 2;
     public static final int BLUE_BUTTON = 3;

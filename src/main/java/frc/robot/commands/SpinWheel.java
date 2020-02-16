@@ -17,8 +17,8 @@ public class SpinWheel extends CommandBase {
   /**
    * Creates a new SpinWheel.
    */
-  private Color colorInput;
-  public SpinWheel(Color colorInput) {
+  private String colorInput;
+  public SpinWheel(String colorInput) {
     addRequirements(Robot.spinner);
     this.colorInput = colorInput;
   }
@@ -40,16 +40,45 @@ public class SpinWheel extends CommandBase {
     Robot.spinner.spinnerMotor.set(0);
   }
 
-  public boolean colorRangeCheck(Color colorIn)
-  {
-   double redIn = colorIn.red;
-   double blueIn = colorIn.blue;
-   double greenIn = colorIn.green;
+  public boolean colorRangeCheck(String colorName)
+  { 
+    double redIn = 0;
+    double blueIn = 0;
+    double greenIn = 0;
+    
+    System.out.println(colorName);
+    if(colorName.equals("RED"))
+    {
+      redIn = Constants.RR;
+      blueIn = Constants.RB;
+      greenIn = Constants.RG;
+    }
+    if(colorName.equals("BLUE"))
+    {
+       redIn = Constants.BR;
+       blueIn = Constants.BB;
+       greenIn = Constants.BG;
+    }
+    if(colorName.equals("GREEN"))
+    {
+       redIn = Constants.GR;
+       blueIn = Constants.GB;
+       greenIn = Constants.GG;
+    }
+    if(colorName.equals("YELLOW"))
+    {
+      redIn = Constants.YR;
+      blueIn = Constants.YB;
+      greenIn = Constants.YG;
+    }
 
    double redSense = Robot.spinner.colorSensor.getRed();
    double blueSense = Robot.spinner.colorSensor.getBlue();
    double greenSense = Robot.spinner.colorSensor.getGreen();
 
+   System.out.println("Red Sense: " + redSense + "Green Sense: " + greenSense + "Blue Sense:" + blueSense);
+   System.out.printf("Red In: %6.1f Blue In: %6.1f Green In: %6.1f ", redIn, blueIn, greenIn);
+   
    if(redSense > redIn - Constants.RANGE && redSense < redIn + Constants.RANGE
    && blueSense > blueIn - Constants.RANGE && blueSense < blueIn + Constants.RANGE 
    && greenSense > greenIn - Constants.RANGE  && greenSense < greenIn + Constants.RANGE)
