@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
     // Buttons
     RobotContainer.redButton.whenPressed(new SpinWheel("RED"), true);
     RobotContainer.blueButton.whenPressed(new SpinWheel("BLUE"), true);
-    RobotContainer.greenButton.whenPressed(new SpinWheel("GREEN)"), true);
+    RobotContainer.greenButton.whenPressed(new SpinWheel("GREEN"), true);
     RobotContainer.yellowButton.whenPressed(new SpinWheel("YELLOW"), true);
 
     // Camera stuff
