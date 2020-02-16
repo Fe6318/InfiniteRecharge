@@ -24,10 +24,8 @@ public class MoveLift extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Lift.liftMotorLeft.set(RobotContainer.operator.getRawAxis(3));
-    Lift.liftMotorRight.set(RobotContainer.operator.getRawAxis(3));
-    Lift.liftMotorLeft.set(-RobotContainer.operator.getRawAxis(2));
-    Lift.liftMotorRight.set(-RobotContainer.operator.getRawAxis(2));
+    Lift.liftMotorLeft.set(RobotContainer.operator.getRawAxis(1));
+    Lift.liftMotorRight.set(RobotContainer.operator.getRawAxis(1));
   }
 
   // Called every time the scheduler runs while the command is scheduled.

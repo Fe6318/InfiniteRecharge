@@ -20,6 +20,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveContinous;
 import frc.robot.commands.DriveForwards;
+import frc.robot.commands.MoveLift;
 import frc.robot.commands.SpinWheel;
 import frc.robot.commands.SpinnerManual;
 import frc.robot.subsystems.DriveTrain;
@@ -55,7 +56,8 @@ public class Robot extends TimedRobot {
 
     // Subsystems
     lift = new Lift();
-
+    lift.setDefaultCommand(new MoveLift());
+    
     driveTrain = new DriveTrain();
     driveTrain.setDefaultCommand(new DriveContinous());
 
