@@ -44,9 +44,10 @@ public class DriveContinous extends CommandBase {
     */
 
     //(double xSpeed, double zRotation, boolean squareInputs)
-    Robot.driveTrain.dDrive.arcadeDrive(
-    RobotContainer.driver.getRawAxis(1), 
-    RobotContainer.driver.getRawAxis(2) + RobotContainer.driver.getRawAxis(0), true);
+
+      Robot.driveTrain.dDrive.arcadeDrive(
+      RobotContainer.driver.getRawAxis(2) + -RobotContainer.driver.getRawAxis(3), 
+      RobotContainer.driver.getRawAxis(0), true);
     
     
 
