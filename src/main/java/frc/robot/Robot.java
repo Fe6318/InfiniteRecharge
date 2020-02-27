@@ -21,8 +21,10 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.DriveContinous;
 import frc.robot.commands.DriveForwards;
 import frc.robot.commands.MoveLift;
+import frc.robot.commands.SpinCamera;
 import frc.robot.commands.SpinWheel;
 import frc.robot.commands.SpinnerManual;
+import frc.robot.subsystems.CameraSpinner;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.Spinner;
@@ -38,9 +40,11 @@ import frc.robot.utilities.PIDControlLoop;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
+  public static CameraSpinner cameraSpinner;
   public static DriveTrain driveTrain;
   public static AHRS ahrs;
   public static UsbCamera camera1;
+  public static UsbCamera camera2;
   public static Lift lift;
   public static Spinner spinner;
   
@@ -64,6 +68,8 @@ public class Robot extends TimedRobot {
     spinner = new Spinner();
     spinner.setDefaultCommand(new SpinnerManual());
 
+    cameraSpinner = new CameraSpinner();
+    cameraSpinner.setDefaultCommand(new SpinCamera());
     // Buttons
     RobotContainer.redButton.whenPressed(new SpinWheel("RED"), true);
     RobotContainer.blueButton.whenPressed(new SpinWheel("BLUE"), true);
@@ -75,7 +81,7 @@ public class Robot extends TimedRobot {
     ahrs = new AHRS(SPI.Port.kMXP);
     ahrs.enableLogging(true);
     CameraServer.getInstance().startAutomaticCapture(0);
-    
+    CameraServer.getInstance().startAutomaticCapture(1);
     //Ignore Below
     PIDControlLoop p = new PIDControlLoop();
   }

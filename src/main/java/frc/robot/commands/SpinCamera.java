@@ -7,37 +7,27 @@
 
 package frc.robot.commands;
 
-import com.revrobotics.ColorMatch;
-import com.revrobotics.ColorSensorV3;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class SpinnerManual extends CommandBase {
+public class SpinCamera extends CommandBase {
   /**
-   * Creates a new SpinWheel.
+   * Creates a new SpinCamera.
    */
-  private static ColorSensorV3 m_colorSensor;
-  
-
-
-  public SpinnerManual() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.spinner);
+  public SpinCamera() {
+    addRequirements(Robot.cameraSpinner);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_colorSensor = Robot.spinner.colorSensor; 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.spinner.spinnerMotor.set(-RobotContainer.operator.getRawAxis(2) * 0.05 + RobotContainer.operator.getRawAxis(3) * 0.05);
+    Robot.cameraSpinner.cameraSpinner.set(-RobotContainer.operator.getRawAxis(4) * 0.2);
   }
 
   // Called once the command ends or is interrupted.
