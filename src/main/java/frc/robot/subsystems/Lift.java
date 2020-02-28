@@ -22,6 +22,9 @@ public class Lift extends SubsystemBase {
   public Lift() {
     liftMotorRight = new WPI_VictorSPX(Constants.LIFT_RIGHT_MOTOR);
     liftMotorLeft = new WPI_VictorSPX(Constants.LIFT_LEFT_MOTOR);
+
+    liftMotorRight.setSafetyEnabled(false);
+    liftMotorLeft.setSafetyEnabled(false);
   }
 
   

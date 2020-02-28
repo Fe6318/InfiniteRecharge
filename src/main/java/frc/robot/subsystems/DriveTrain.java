@@ -66,6 +66,11 @@ public class DriveTrain extends SubsystemBase {
     backRightMotor = new WPI_VictorSPX(Constants.BACK_RIGHT_MOTOR);
     backLeftMotor = new WPI_VictorSPX(Constants.BACK_LEFT_MOTOR);
 
+    frontLeftMotor.setSafetyEnabled(false);
+    frontRightMotor.setSafetyEnabled(false);
+    backLeftMotor.setSafetyEnabled(false);
+    backRightMotor.setSafetyEnabled(false);
+
     frontLeftPIDOutput = new VictorPIDOutput(frontLeftMotor);
     frontRightPIDOutput = new VictorPIDOutput(frontRightMotor);
     backRightPIDOutput = new VictorPIDOutput(backRightMotor);
@@ -96,6 +101,8 @@ public class DriveTrain extends SubsystemBase {
 
     rightPID = new PIDController(1, 1, 1, rightEncoderPIDSource, rightMotors);
     leftPID = new PIDController(1, 1, 1, leftEncoderPIDSource, leftMotors);
+
+
 
     
   }

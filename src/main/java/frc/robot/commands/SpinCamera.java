@@ -27,7 +27,7 @@ public class SpinCamera extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.
+  
     Robot.cameraSpinner.cameraSpinner.set(-RobotContainer.operator.getRawAxis(4) * 0.2);
     Robot.cameraSpinner.cameraSpinner.set(-RobotContainer.driver.getRawAxis(4) * 0.2);
   }

@@ -19,6 +19,7 @@ public class CameraSpinner extends SubsystemBase {
    */
   public CameraSpinner() {
     cameraSpinner = new PWMTalonSRX(Constants.CAMERA_SPINNER_MOTOR);
+    cameraSpinner.setSafetyEnabled(false);
   }
 
   @Override

@@ -69,7 +69,9 @@ public class Robot extends TimedRobot {
 
     cameraSpinner = new CameraSpinner();
     cameraSpinner.setDefaultCommand(new SpinCamera());
-  
+    
+    lift.liftMotorLeft.set(0.05);
+    lift.liftMotorRight.set(0.05);
 
     // Camera stuff
     

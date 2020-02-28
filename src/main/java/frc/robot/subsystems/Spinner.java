@@ -26,6 +26,7 @@ public class Spinner extends SubsystemBase {
   {
     spinnerMotor = new PWMVictorSPX(Constants.COLOR_SPINNER_MOTOR);
     colorSensor = new ColorSensorV3(Constants.i2cPort);
+    spinnerMotor.setSafetyEnabled(false);
   }
 
   @Override
