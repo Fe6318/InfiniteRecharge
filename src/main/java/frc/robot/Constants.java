@@ -34,7 +34,7 @@ public final class Constants {
 
     // Below are PWM
     public static final int COLOR_SPINNER_MOTOR = 0;
-    public static final int CAMERA_SPINNER_MOTOR = 6;
+    public static final int CAMERA_SPINNER_MOTOR = 1;
 
     // Colors for color sensor comparison on spinner
     public static final double RR = 1250;

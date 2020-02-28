@@ -22,7 +22,6 @@ import frc.robot.commands.DriveContinous;
 import frc.robot.commands.DriveForwards;
 import frc.robot.commands.MoveLift;
 import frc.robot.commands.SpinCamera;
-import frc.robot.commands.SpinWheel;
 import frc.robot.commands.SpinnerManual;
 import frc.robot.subsystems.CameraSpinner;
 import frc.robot.subsystems.DriveTrain;
@@ -70,11 +69,7 @@ public class Robot extends TimedRobot {
 
     cameraSpinner = new CameraSpinner();
     cameraSpinner.setDefaultCommand(new SpinCamera());
-    // Buttons
-    RobotContainer.redButton.whenPressed(new SpinWheel("RED"), true);
-    RobotContainer.blueButton.whenPressed(new SpinWheel("BLUE"), true);
-    RobotContainer.greenButton.whenPressed(new SpinWheel("GREEN"), true);
-    RobotContainer.yellowButton.whenPressed(new SpinWheel("YELLOW"), true);
+  
 
     // Camera stuff
     
