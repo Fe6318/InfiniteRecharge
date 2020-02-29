@@ -8,7 +8,7 @@ public class DriveCalibrate
 {
     public static void calibrateNav()
     {
-        while(Robot.ahrs.getAngle() > 0.5 && Robot.ahrs.getAngle() < -0.5)
+        while(Robot.ahrs.getAngle() > 0.5 || Robot.ahrs.getAngle() < -0.5)
         {
             Robot.ahrs.calibrate();
         }
