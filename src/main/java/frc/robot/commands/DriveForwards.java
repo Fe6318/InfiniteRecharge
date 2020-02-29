@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.utilities.DriveCalibrate;
 
 public class DriveForwards extends CommandBase {
   public double ticksForward;
@@ -40,7 +41,7 @@ public class DriveForwards extends CommandBase {
     DriveTrain.rightPID.enable();
     DriveTrain.leftPID.enable();
 
-    Robot.ahrs.calibrate();
+    DriveCalibrate.calibrateNav();
 
     timer = new Timer();
     timer.start();
